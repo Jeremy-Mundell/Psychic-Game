@@ -23,88 +23,63 @@ document.onkeyup = function(event) {
 //here the input is converted to lower case just in "case" the input in capitalized to avoid error
 var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
 
-if(guessesSoFar.indexOf(userGuess)<0 && letters.indexOf(userGuess)>=0){
+//here the users guess is added to the guessSoFar empty array.
+
+if (guessesSoFar.indexOf(userGuess)<0 && letters.indexOf(userGuess)>=0){
 	guessesSoFar[guessesSoFar.lenth]=userGuess; 
 	guessLeft--; //decrease guess by 1
 }
 
+//if the users guess is the same as the computer's guess then it is logged as a win and the game is reset.
 
-// next guesses are limited by 9
-
-var updateGuessesLeft = function() {
-
-	document.querySelector("#guessLeft").innerHTML = + guessLeft;
-};
- 
-//end here
-
+if (computerGuess==userGuess) {
+	wins++;
+	console.log("You guessed correctly!");//indicates you won
+	guessLeft = 9; //resets guesses left to 9
+	guessesSoFar = []; //resets the variable set to empty
+	computerGuess = letters[Math.floor(Math.random()*letters.length)]; //picks a new letter for the next round.
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-var updateLetterToGuess = function() {
-	this.letterToGuess = this.options[Math.floor(Math.random()*this.options.length)];
-};
-
-// here the letters guessed are pushed to the screen
-var updateGuessesMade = function() {
-	document.querySelector("#letter").innerHTML = "Guess so far: " + guessesSoFar.join(', ');
-
-
-};
-
-// reset everything when guesses reach 9
-var reset = function() {
-	totalGuess = 9;
-	guessLeft = 9;
-	guessSoFar = [];
-
-
-	updateGuessesMade();
-	updateGuessesLeft();
-	updateLetterToGuess();
+	console.log("Wins: " + wins + "Losses: " + losses + "guessLeft: " + guessLeft + "guessSoFar" + guessSoFar + "pcGuess" + computerGuess);
 }
 
-updateLetterToGuess();
-updateGuessesLeft();
+
+if (guessLeft == 0) { //if guessLeft = 0 it is recorded as a loss
+	losses++; //increase losses by 1
+	console.log("You have lost!"); //write to console You have lost!
+	guessLeft=9; //reset guessLeft to 9
+	guessesSoFar=[] //resets variable set to empty
+	computerGuess = letters[Math.floor(Math.random()*letters.length)]; //picks a new letter for the next round.
+
+console.log("Wins: " + wins + "Losses: " + losses + "guessLeft: " + guessLeft + "guessesSoFar: " guessesSoFar +"pcGuess" + computerGuess);
+}
 
 
-document.onkeyup = function(event) {
-// detects which key was pressed on up release assigns it as a function
-guessLeft--;
-var userguess = String.fromCharCode(event.keyCode).toLowerCase();
-// takes the letter you have chosen and has made it lowercase 
-		
-		guessedletter.push(userguess);
-		updateGuessLeft();
-		updateGuessLeft();
+// sends game info to the HTML page
+
+var html = "<p><h1> The Psychic Game</h1></p>"  + "<p><h4> Guess the letter I am thinking of??</h4></p>"
++ "<p><h4>Wins: " + wins + "</h4></p>" + "<p><h4>Losses: " + losses + "</h4></p>" + "<p><h4>guessLeft: " + guessLeft + "</h4></p>"
+"<p><h4>guessesSoFar: " + guessesSoFar + "</h4></p>";
 
 
- // next we are to create the conditionals for the game's rule structure.
 
-				if (guessLeft > 0) {
-					if (userguess == letterToGuess){
-						wins++;
-						document.querySelector("#wins").innerHTML = "wins: " + wins;
-						alert("You are a psychic!!!");
-						reset();
-					}
-				} else if { guessLeft == 0} {
-					losses++;
-					document.querySelector("#losses").innerHTML = "losses: " + losses;
-					alert("Sorry bro, you are no psychic. Try again.");
-					reset();
-				}
+document.querySelector("#game").innerHTML = html;
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 				

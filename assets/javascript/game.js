@@ -10,19 +10,25 @@ var guessLeft = 9;
 var guessSoFar = [];
 // guess so far is where we are storing the users choice in the round
 var userGuess = null;
-//this variabel is the letter the user pics
+//this variable is the letter the user pics
 
 // here we take a letter in the "letters" array and it gets chosen randomly by multiplying it by the math.random function and subsequently is rounded down by the math.floor function
-// the letter is stored in the variable computer.Guess
+// the letter is stored in the variable "computer.Guess"
 var computerGuess = letters[Math.floor(Math.random()*letters.length)];
-	console.log("Wins: " + wins + "Losses: " + losses + "guessLeft: " + guessLeft + "guessSoFar" + guessSoFar + "computerGuess: ")
+	console.log("Wins: " + wins + "Losses: " + losses + "guessLeft: " + guessLeft + "guessSoFar" + guessSoFar + "pcGuess" + computerGuess);
 
-
+//computer listens for key input
 document.onkeyup = function(event) {
-//listen for key input
+
+//here the input is converted to lower case just in "case" the input in capitalized to avoid error
 var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
 
+if(guessesSoFar.indexOf(userGuess)<0 && letters.indexOf(userGuess)>=0){
+	guessesSoFar[guessesSoFar.lenth]=userGuess; 
+	guessLeft--; //decrease guess by 1
 }
+
+
 // next guesses are limited by 9
 
 var updateGuessesLeft = function() {
@@ -30,6 +36,21 @@ var updateGuessesLeft = function() {
 	document.querySelector("#guessLeft").innerHTML = + guessLeft;
 };
  
+//end here
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 var updateLetterToGuess = function() {
 	this.letterToGuess = this.options[Math.floor(Math.random()*this.options.length)];

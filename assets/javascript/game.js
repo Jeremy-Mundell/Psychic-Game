@@ -21,7 +21,7 @@ var userGuess = null;
 // the letter is stored in the variable "computer.Guess"
 var computerGuess = letters[Math.floor(Math.random()*letters.length)];
 
-	console.log("Wins: " + wins + "Losses: " + losses + "GuessLeft: " + guessLeft + "GuessSoFar: " + guessSoFar + "computerGuess: " + computerGuess);
+	console.log("Wins: " + wins + "Losses: " + losses + "GuessLeft: " + guessLeft + "GuessSoFar: " + userGuess + "computerPick: " + computerGuess);
 
 //computer listens for key input
 document.onkeyup = function(event) {
@@ -29,11 +29,12 @@ document.onkeyup = function(event) {
 //here the input is converted to lower case just in "case" the input is capitalized to avoid error
 var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
 
-//here the user's guess is added to the guessSoFar empty array.
+// guessSoFar.push(" " + userGuess);
+// //here the user's guess is added to the guessSoFar empty array.
 
-if (guessSoFar.indexOf(userGuess)<0 && letters.indexOf(userGuess) >=0){
+if (guessSoFar.indexOf(userGuess) < 0 && letters.indexOf(userGuess) >= 0){
 	guessSoFar[guessSoFar.lenth]=userGuess; 
-	guessLeft--; //decrease guess by 1
+	guessLeft--; //new letter to decrease guess by 1, only letter not numbers or symbols count towards guess.
 }
 
 //if the users guess is the same as the computer's guess then it is logged as a win and the game is reset.
@@ -47,40 +48,33 @@ if (computerGuess==userGuess) {
 	computerGuess = letters[Math.floor(Math.random()*letters.length)]; //picks a new letter for the next round.
 
 
-	console.log("Wins: " + wins + "Losses: " + losses + "guessLeft: " + guessLeft + "GuessSoFar: " + guessSoFar + "computerGuess: " + computerGuess);
+	console.log("Wins: " + wins + "Losses: " + losses + "guessLeft: " + guessLeft + "GuessSoFar: " + userGuess + "computerPick: " + computerGuess);
 }
 
 
 if (guessLeft == 0) { //if guessLeft = 0 it is recorded as a loss
-	alert("You have lost this round!"); //write to console You have lost!
+	alert("I saw this coming...You have lost this round!"); //write to console You have lost!
 	losses++; //increase losses by 1
 	
 	guessLeft=9; //reset guessLeft to 9
-	guessSoFar=[] //resets variable set to empty
+	guessSoFar=[]; //resets variable set to empty
 	computerGuess = letters[Math.floor(Math.random()*letters.length)]; //picks a new letter for the next round.
 
-	console.log("Wins: " + wins + "Losses: " + losses + "guessLeft: " + guessLeft + "GuessSoFar: " + guessSoFar + "computerGuess: " + computerGuess);
+	console.log("Wins: " + wins + "Losses: " + losses + "guessLeft: " + guessLeft + "GuessSoFar: " + userGuess + "computerPick: " + computerGuess);
 }
+	
+	guessSoFar.push(" " + userGuess);
 
 
+	var html = "<p><h1> The Psychic Game</h1></p>" + 
+	"<p><h4>Welcome...Can you guess what letter I am thinking of?</h4></p>" +
+	 "<p><h4>Wins: " + wins + "</h4></p>" + "<p><h4>Losses: " + losses + "</h4></p>" + 
+	 "<p><h4>Guesses Left: " + guessLeft + "</h4></p>" + "<p><h4>Your guesses so far: " +
+	  guessSoFar +"</h4></p>";
 
-// sends game info to the HTML page
+	document.querySelector("#game").innerHTML = html;
 
-var html = "<p><h1> The Psychic Game</h1></p>"  + "<p><h4>Welcome...Can you guess what letter I'm thinking of? </h4></p>"
-+ "<p><h4>Wins: " + wins + "</h4></p>" + "<p><h4>Losses: " + losses + "</h4></p>" + "<p><h4>guessLeft: " + guessLeft + "</h4></p>"
-"<p><h4>guessSoFar: " + guessSoFar + "</h4></p>";
-
-
-
-document.querySelector("#game").innerHTML = html;
 }
-
-
-
-
-
-
-
 
 
 

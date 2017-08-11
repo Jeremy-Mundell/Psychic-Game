@@ -41,8 +41,7 @@ if (guessSoFar.indexOf(userGuess) < 0 && letters.indexOf(userGuess) >= 0){
 
 if (computerGuess==userGuess) {
 	alert("You guessed correctly!");//indicates you won
-	wins++;
-	
+	wins++;  //adds to wins by 1
 	guessLeft = 9; //resets guesses left to 9
 	guessSoFar = []; //resets the variable set to empty
 	computerGuess = letters[Math.floor(Math.random()*letters.length)]; //picks a new letter for the next round.
@@ -55,23 +54,23 @@ if (computerGuess==userGuess) {
 if (guessLeft == 0) { //if guessLeft = 0 it is recorded as a loss
 	alert("I saw this coming...You have lost this round!"); //write to console You have lost!
 	losses++; //increase losses by 1
-	
 	guessLeft=9; //reset guessLeft to 9
-	guessSoFar=[]; //resets variable set to empty
-	computerGuess = letters[Math.floor(Math.random()*letters.length)]; //picks a new letter for the next round.
+	guessSoFar=[]; //resets variable set to empty kind of.... cannot seem to get it to rest correctly. does not erase last guess when you win or lose round
+	computerGuess = letters[Math.floor(Math.random()*letters.length)]; // computer picks a new letter for the next round.
 
 	console.log("Wins: " + wins + "Losses: " + losses + "guessLeft: " + guessLeft + "GuessSoFar: " + userGuess + "computerPick: " + computerGuess);
 }
 	
-	guessSoFar.push(" " + userGuess);
+	guessSoFar.push(" " + userGuess); // pushes the user letter picked to screen
 
-
+// inner html pushed to web page
 	var html = "<p><h1> The Psychic Game</h1></p>" + 
 	"<p><h4>Welcome...Can you guess what letter I am thinking of?</h4></p>" +
 	 "<p><h4>Wins: " + wins + "</h4></p>" + "<p><h4>Losses: " + losses + "</h4></p>" + 
 	 "<p><h4>Guesses Left: " + guessLeft + "</h4></p>" + "<p><h4>Your guesses so far: " +
 	  guessSoFar +"</h4></p>";
 
+	  //inserts inner html into id tag in html GAME
 	document.querySelector("#game").innerHTML = html;
 
 }

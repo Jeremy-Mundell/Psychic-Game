@@ -8,9 +8,10 @@ var letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", 
 // options for the choosing within an array
 // these are the scoring variables
 
-var wins = 0;
+
+var wins = 0; 
 var losses = 0;
-var guesses = 0;
+// var guesses = 0;
 var guessLeft = 9;
 var guessSoFar = [];
 // guess so far is where we are storing the users choice in the round
@@ -39,7 +40,7 @@ guessSoFar.push(" " + userGuess); // pushes the user letter picked to screens
 // //here the user's guess is added to the guessSoFar empty array.
 
 if (guessSoFar.indexOf(userGuess) < 0 && letters.indexOf(userGuess) >= 0){
-	guessSoFar[guessSoFar.length]=userGuess; 
+	guessSoFar[guessSoFar.lenth]=userGuess; 
 	guessLeft--; //new letter to decrease guess by 1, CANNOT SEEM TO GET ONLY NUMBERS AS CHOICE...
 }
 

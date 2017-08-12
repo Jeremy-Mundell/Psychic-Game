@@ -39,7 +39,7 @@ guessSoFar.push(" " + userGuess); // pushes the user letter picked to screens
 // //here the user's guess is added to the guessSoFar empty array.
 
 if (guessSoFar.indexOf(userGuess) < 0 && letters.indexOf(userGuess) >= 0){
-	guessSoFar[guessSoFar.lenth]=userGuess; 
+	guessSoFar[guessSoFar.length]=userGuess; 
 	guessLeft--; //new letter to decrease guess by 1, CANNOT SEEM TO GET ONLY NUMBERS AS CHOICE...
 }
 
